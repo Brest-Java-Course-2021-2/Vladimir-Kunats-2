@@ -71,4 +71,3 @@ public class Driver {
         return Objects.hash(driverId, firstName, lastName, distance, sallary);
     }
 }
-
