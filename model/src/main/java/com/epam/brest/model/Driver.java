@@ -7,10 +7,10 @@ public class Driver {
     private Integer driverId;
     private String firstName;
     private String lastName;
-    private double distance;
+    private Integer distance;
     private BigDecimal sallary;
 
-    public Driver(Integer driverId, String firstName, String lastName, double distance, BigDecimal sallary) {
+    public Driver(Integer driverId, String firstName, String lastName, Integer distance, BigDecimal sallary) {
         this.driverId = driverId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,7 +46,7 @@ public class Driver {
         return distance;
     }
 
-    public void setDistance(double distance) {
+    public void setDistance(Integer distance) {
         this.distance = distance;
     }
 
