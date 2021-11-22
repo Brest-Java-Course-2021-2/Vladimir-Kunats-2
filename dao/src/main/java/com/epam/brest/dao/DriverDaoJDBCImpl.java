@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Driver;
+import com.epam.brest.model.dao.DriverDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -28,7 +30,8 @@ public class DriverDaoJDBCImpl implements DriverDao {
 
     @Override
     public List<Driver> findAll() {
-        return namedParameterJdbcTemplate.query(SQL_ALL_DRIVER, DriverRowMapper);
+         return namedParameterJdbcTemplate.query(SQL_ALL_DRIVER, DriverRowMapper);
+
     }
 
     @Override
@@ -54,9 +57,8 @@ public class DriverDaoJDBCImpl implements DriverDao {
             driver.setFirstName(resultSet.getString("firstname"));
             driver.setLastName(resultSet.getString("lastName"));
             driver.setDistance(resultSet.getInt("distance"));
-            driver.setSalary(resultSet.getBigDecimal("salary"));
+            driver.setSallary(resultSet.getBigDecimal("salary"));
             return driver;
-
         }
     }
 }

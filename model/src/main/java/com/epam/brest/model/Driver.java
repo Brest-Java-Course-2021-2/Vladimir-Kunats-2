@@ -18,6 +18,10 @@ public class Driver {
         this.sallary = sallary;
     }
 
+    public Driver() {
+
+    }
+
     public Integer getDriverId() {
         return driverId;
     }
