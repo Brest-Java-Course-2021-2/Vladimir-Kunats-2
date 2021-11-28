@@ -2,9 +2,6 @@ package com.epam.brest.dao;
 
 import com.epam.brest.model.Driver;
 import com.epam.brest.model.dao.DriverDao;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,25 +15,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+
 @Component
 public class DriverDaoJDBCImpl implements DriverDao {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final String SQL_ALL_DRIVER = "select d.driverId, d.firstName, d.lastName, d.distance, d.salary fron driver d order by d.lastName";
+    private final String SQL_ALL_DRIVER = "select d.firstName, d.lastName, d.workDate from driver d order by d.lastName";
+    private final String SQL_CREATE_DRIVER = "insert into driver(firstName) values (:firstName)";
 
     public DriverDaoJDBCImpl(DataSource dataSource) {
-        this.namedParameterJdbcTemplate = new namedParameterJdbcTemplate(dataSource);
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     @Override
     public List<Driver> findAll() {
-         return namedParameterJdbcTemplate.query(SQL_ALL_DRIVER, DriverRowMapper);
+         return namedParameterJdbcTemplate.query(SQL_ALL_DRIVER, new DriverRowMapper());
 
     }
 
     @Override
     public Integer create(Driver driver) {
-        return null;
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("firstname",driver.getFirstName());
+          KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(SQL_CREATE_DRIVER, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
+
     }
 
     @Override
@@ -56,8 +59,7 @@ public class DriverDaoJDBCImpl implements DriverDao {
             driver.setDriverId(resultSet.getInt("driverId"));
             driver.setFirstName(resultSet.getString("firstname"));
             driver.setLastName(resultSet.getString("lastName"));
-            driver.setDistance(resultSet.getInt("distance"));
-            driver.setSallary(resultSet.getBigDecimal("salary"));
+            driver.setWorkDate(resultSet.getTimestamp("workDate").toInstant());
             return driver;
         }
     }

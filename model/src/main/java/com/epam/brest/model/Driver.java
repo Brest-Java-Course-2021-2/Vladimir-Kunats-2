@@ -1,25 +1,27 @@
 package com.epam.brest.model;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Objects;
 
 public class Driver {
     private Integer driverId;
     private String firstName;
     private String lastName;
-    private Integer distance;
-    private BigDecimal sallary;
+    private Instant workDate;
 
-    public Driver(Integer driverId, String firstName, String lastName, Integer distance, BigDecimal sallary) {
+    public Driver() {
+    }
+
+    public Driver(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Driver(Integer driverId, String firstName, String lastName, Instant workDate) {
         this.driverId = driverId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.distance = distance;
-        this.sallary = sallary;
-    }
-
-    public Driver() {
-
+        this.workDate = workDate;
     }
 
     public Integer getDriverId() {
@@ -46,20 +48,12 @@ public class Driver {
         this.lastName = lastName;
     }
 
-    public double getDistance() {
-        return distance;
+    public Instant getWorkDate() {
+        return workDate;
     }
 
-    public void setDistance(Integer distance) {
-        this.distance = distance;
-    }
-
-    public BigDecimal getSallary() {
-        return sallary;
-    }
-
-    public void setSallary(BigDecimal sallary) {
-        this.sallary = sallary;
+    public void setWorkDate(Instant workDate) {
+        this.workDate = workDate;
     }
 
     @Override
@@ -67,11 +61,21 @@ public class Driver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return Double.compare(driver.distance, distance) == 0 && driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && sallary.equals(driver.sallary);
+        return driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && workDate.equals(driver.workDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(driverId, firstName, lastName, distance, sallary);
+        return Objects.hash(driverId, firstName, lastName, workDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "driverId=" + driverId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", carWorkDate=" + workDate +
+                '}';
     }
 }

@@ -23,7 +23,7 @@
       <module name="service-api" target="11" />
       <module name="test-db" target="11" />
       <module name="Vladimir-Kunats-2" target="11" />
-      <module name="web-app" target="1.5" />
+      <module name="web-app" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

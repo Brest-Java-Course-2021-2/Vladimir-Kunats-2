@@ -1,23 +1,22 @@
 package com.epam.brest.model;
 
+import java.time.Instant;
 import java.util.Objects;
 
 public class Car {
     private Integer carId;
-
     private String nameCar;
-
-    private String modelCar;
-
     private String typeCar;
     private Integer driverId;
 
-    public Car(Integer carId, String nameCar, String modelCar, String typeCar, Integer driverId) {
+    public Car(Integer carId, String nameCar, String typeCar, Integer driverId) {
         this.carId = carId;
         this.nameCar = nameCar;
-        this.modelCar = modelCar;
         this.typeCar = typeCar;
         this.driverId = driverId;
+    }
+
+    public Car() {
     }
 
     public Integer getCarId() {
@@ -34,14 +33,6 @@ public class Car {
 
     public void setNameCar(String nameCar) {
         this.nameCar = nameCar;
-    }
-
-    public String getModelCar() {
-        return modelCar;
-    }
-
-    public void setModelCar(String modelCar) {
-        this.modelCar = modelCar;
     }
 
     public String getTypeCar() {
@@ -65,12 +56,12 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return carId.equals(car.carId) && nameCar.equals(car.nameCar) && modelCar.equals(car.modelCar) && typeCar.equals(car.typeCar) && driverId.equals(car.driverId);
+        return carId.equals(car.carId) && nameCar.equals(car.nameCar) && typeCar.equals(car.typeCar)  && driverId.equals(car.driverId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carId, nameCar, modelCar, typeCar, driverId);
+        return Objects.hash(carId, nameCar, typeCar, driverId);
     }
 
     @Override
@@ -78,10 +69,8 @@ public class Car {
         return "Car{" +
                 "carId=" + carId +
                 ", nameCar='" + nameCar + '\'' +
-                ", modelCar='" + modelCar + '\'' +
                 ", typeCar='" + typeCar + '\'' +
                 ", driverId=" + driverId +
                 '}';
     }
 }
-
