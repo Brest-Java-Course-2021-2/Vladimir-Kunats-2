@@ -8,5 +8,6 @@ public interface DriverDao {
     Integer create (Driver driver);
     Integer update (Driver driver);
     Integer delete (Integer driverId);
-
+    Driver getDriverById(Integer driverId);
+    Integer count();
 }

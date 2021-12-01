@@ -20,8 +20,8 @@ import java.util.List;
 public class DriverDaoJDBCImpl implements DriverDao {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final String SQL_ALL_DRIVER = "select d.firstName, d.lastName, d.workDate from driver d order by d.lastName";
-    private final String SQL_CREATE_DRIVER = "insert into driver(firstName) values (:firstName)";
+    private final String SQL_ALL_DRIVER = "select d.firstName, d.lastName, d.driverLicence, d.workDate from driver d order by d.driverLicence";
+    private final String SQL_CREATE_DRIVER = "insert into driver(driverLicence) values (:driverLicence)";
 
     public DriverDaoJDBCImpl(DataSource dataSource) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
@@ -35,7 +35,7 @@ public class DriverDaoJDBCImpl implements DriverDao {
 
     @Override
     public Integer create(Driver driver) {
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("firstname",driver.getFirstName());
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("driverLicence",driver.getDriverLicence());
           KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(SQL_CREATE_DRIVER, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
@@ -52,6 +52,16 @@ public class DriverDaoJDBCImpl implements DriverDao {
         return null;
     }
 
+    @Override
+    public Driver getDriverById(Integer driverId) {
+        return null;
+    }
+
+    @Override
+    public Integer count() {
+        return null;
+    }
+
     private class DriverRowMapper implements RowMapper<Driver> {
         @Override
         public Driver mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -59,6 +69,7 @@ public class DriverDaoJDBCImpl implements DriverDao {
             driver.setDriverId(resultSet.getInt("driverId"));
             driver.setFirstName(resultSet.getString("firstname"));
             driver.setLastName(resultSet.getString("lastName"));
+            driver.setLastName(resultSet.getString("driverLicence"));
             driver.setWorkDate(resultSet.getTimestamp("workDate").toInstant());
             return driver;
         }

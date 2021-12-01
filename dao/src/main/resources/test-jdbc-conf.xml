@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
-<bean name="driverDao" class="com.epam.brest.dao.DriverDaoJDBCImpl">
-        <construktor-arg name="dataSource" ref="dataSource"/>
-</bean>
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean name="driverDao" class="com.epam.brest.DriverDAOJDBCImpl">
+                <constructor-arg ref="namedParameterJdbcTemplate"/>
+        </bean>
+
+        <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+                <constructor-arg ref="dataSource"/>
+        </bean>
+
+        <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+                <property name="locations">
+                        <list>
+                                <value>classpath*:test-db.properties</value>
+                                <value>classpath*:sql-driver.properties</value>
+                        </list>
+                </property>
+        </bean>
+
+
 </beans>

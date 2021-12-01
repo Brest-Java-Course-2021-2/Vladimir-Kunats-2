@@ -1,6 +1,5 @@
 package com.epam.brest.model;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -8,19 +7,21 @@ public class Driver {
     private Integer driverId;
     private String firstName;
     private String lastName;
+    private String driverLicence;
     private Instant workDate;
 
     public Driver() {
     }
 
-    public Driver(String firstName) {
-        this.firstName = firstName;
+    public Driver(String driverLicence) {
+        this.driverLicence = driverLicence;
     }
 
-    public Driver(Integer driverId, String firstName, String lastName, Instant workDate) {
+    public Driver(String firstName, String lastName, String driverLicence, Instant workDate) {
         this.driverId = driverId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.driverLicence = driverLicence;
         this.workDate = workDate;
     }
 
@@ -48,6 +49,14 @@ public class Driver {
         this.lastName = lastName;
     }
 
+    public String getDriverLicence() {
+        return driverLicence;
+    }
+
+    public void setDriverLicence(String driverLicence) {
+        this.driverLicence = driverLicence;
+    }
+
     public Instant getWorkDate() {
         return workDate;
     }
@@ -61,12 +70,12 @@ public class Driver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && workDate.equals(driver.workDate);
+        return driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && driverLicence.equals(driver.driverLicence) && workDate.equals(driver.workDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(driverId, firstName, lastName, workDate);
+        return Objects.hash(driverId, firstName, lastName, driverLicence, workDate);
     }
 
     @Override
@@ -75,7 +84,8 @@ public class Driver {
                 "driverId=" + driverId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", carWorkDate=" + workDate +
+                ", driverLicence='" + driverLicence + '\'' +
+                ", workDate=" + workDate +
                 '}';
     }
 }
