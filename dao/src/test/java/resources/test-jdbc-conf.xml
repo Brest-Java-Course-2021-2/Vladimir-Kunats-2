@@ -4,12 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="userDao" class="com.epam.brest.dao.DaoUser">
-        <constructor-arg name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean name="requestDao" class="com.epam.brest.dao.DaoRequest">
-        <constructor-arg name="dataSource" ref="dataSource"/>
+    <bean name="driverDao" class="com.epam.brest.DriverDAOJDBCImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
@@ -20,10 +16,10 @@
         <property name="locations">
             <list>
                 <value>classpath*:test-db.properties</value>
-                <value>classpath*:sql-user.properties</value>
-                <value>classpath*:sql-request.properties</value>
+                <value>classpath*:sql-client.properties</value>
             </list>
         </property>
     </bean>
+
 
 </beans>

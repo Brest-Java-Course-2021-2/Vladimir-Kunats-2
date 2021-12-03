@@ -5,6 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -32,9 +34,9 @@ class DriverDaoJDBCImplIT {
 
     @Test
     void findAllDriver() {
-        logger.debug("Execute test: findAll()");
+        logger.debug("Execute test: findAllDrivers()");
         assertNotNull(driverDaoJDBC);
-        assertNotNull(driverDaoJDBC.findAll());
+        assertNotNull(driverDaoJDBC.findAllDrivers());
 
     }
 
@@ -42,11 +44,11 @@ class DriverDaoJDBCImplIT {
     void createDriver() {
         logger.debug("Execute test: createDriver()");
         assertNotNull(driverDaoJDBC);
-        int driverSizeBefore = driverDaoJDBC.findAll().size();
+        int driverSizeBefore = driverDaoJDBC.findAllDrivers().size();
         Driver driver = new Driver("1AA037164");
-        Integer newDriverId = driverDaoJDBC.create(driver);
+        Integer newDriverId = driverDaoJDBC.createDriver(driver);
         assertNotNull(newDriverId);
-        assertEquals((int) driverSizeBefore, driverDaoJDBC.findAll().size() - 1);
+        assertEquals((int) driverSizeBefore, driverDaoJDBC.findAllDrivers().size() - 1);
 
 
     }
@@ -57,25 +59,32 @@ class DriverDaoJDBCImplIT {
         assertNotNull(driverDaoJDBC);
         Driver driver = new Driver("1AA037164");
         assertThrows(DuplicateKeyException.class, () -> {
-            driverDaoJDBC.create(driver);
-            driverDaoJDBC.create(driver);
+            driverDaoJDBC.createDriver(driver);
+            driverDaoJDBC.createDriver(driver);
         });
     }
     @Test
     void updateDriver() {
         logger.debug("Execute test: updateDriver()");
-        List<Driver> drivers = driverDaoJDBC.findAll();
-        driverDaoJDBC.update("Petr", "Petrov", "1AA098321", Instant.parse());
-        teams = teamDaoJDBC.findAll();
-    Team teamSrc = teams.get(0);
-    Team teamDst = teamDaoJDBC.getTeamById(teamSrc.getTeamId());
-    assertEquals(teamSrc.getTeamName(), teamDst.getTeamName());
+        List<Driver> drivers = driverDaoJDBC.findAllDrivers();
+        driverDaoJDBC.updateDriver(new Driver("1AA678876"));
+        drivers = driverDaoJDBC.findAllDrivers();
+    Driver driverSrc = drivers.get(0);
+    Driver driverDst = driverDaoJDBC.getDriverById(driverSrc.getDriverId());
+    assertEquals(driverSrc.getDriverId(), driverDst.getDriverId());
     }
     @Test
     void deleteDriver() {
         logger.debug("Execute test: deleteDriver()");
-        List<Driver> drivers = driverDaoJDBC.findAll();
-        driverDaoJDBC.delete(3);
-        assertEquals(driverDaoJDBC.findAll().size(), drivers.size() - 1);
+        List<Driver> drivers = driverDaoJDBC.findAllDrivers();
+        driverDaoJDBC.deleteDriver(3);
+        assertEquals(driverDaoJDBC.findAllDrivers().size(), drivers.size() - 1);
+    }
+    @Test
+    void countDriver() {
+        logger.debug("Execute test: countDriver()");
+        List<Driver> drivers = driverDaoJDBC.findAllDrivers();
+        driverDaoJDBC.deleteDriver(3);
+        assertEquals(driverDaoJDBC.findAllDrivers().size(), drivers.size() - 1);
     }
 }

@@ -2,6 +2,8 @@ package com.epam.brest.dao;
 
 import com.epam.brest.model.Driver;
 import com.epam.brest.model.dao.DriverDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Component
 public class DriverDaoJDBCImpl implements DriverDao {
+    private final Logger logger = LogManager.getLogger(DriverDaoJDBCImpl.class);
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String SQL_ALL_DRIVER = "select d.firstName, d.lastName, d.driverLicence, d.workDate from driver d order by d.driverLicence";
@@ -28,13 +31,15 @@ public class DriverDaoJDBCImpl implements DriverDao {
     }
 
     @Override
-    public List<Driver> findAll() {
+    public List<Driver> findAllDrivers() {
+        logger.debug("Start:findAllDrivers()");
          return namedParameterJdbcTemplate.query(SQL_ALL_DRIVER, new DriverRowMapper());
 
     }
 
     @Override
-    public Integer create(Driver driver) {
+    public Integer createDriver(Driver driver) {
+        logger.debug("Start:createDriver({})", driver);
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource("driverLicence",driver.getDriverLicence());
           KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(SQL_CREATE_DRIVER, sqlParameterSource, keyHolder);
@@ -43,22 +48,26 @@ public class DriverDaoJDBCImpl implements DriverDao {
     }
 
     @Override
-    public Integer update(Driver driver) {
+    public Integer updateDriver(Driver driver) {
+        logger.debug("Start:updateDriver({})", driver);
         return null;
     }
 
     @Override
-    public Integer delete(Integer driverId) {
+    public Integer deleteDriver(Integer driverId) {
+        logger.debug("Start:deleteDriver({})", driverId);
         return null;
     }
 
     @Override
     public Driver getDriverById(Integer driverId) {
+        logger.debug("Start:getDriverById({})", driverId);
         return null;
     }
 
     @Override
-    public Integer count() {
+    public Integer countDriver() {
+        logger.debug("Start:countDriver({})");
         return null;
     }
 

@@ -4,10 +4,11 @@ import com.epam.brest.model.Driver;
 import java.util.List;
 
 public interface DriverDao {
-    List<Driver> findAll();
-    Integer create (Driver driver);
-    Integer update (Driver driver);
-    Integer delete (Integer driverId);
+    List<Driver> findAllDrivers();
+    Integer createDriver (Driver driver);
+    Integer updateDriver (Driver driver);
+    Integer deleteDriver (Integer driverId);
     Driver getDriverById(Integer driverId);
-    Integer count();
+    Integer countDriver();
+
 }
