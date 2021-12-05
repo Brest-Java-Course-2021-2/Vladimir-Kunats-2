@@ -12,22 +12,20 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static com.epam.brest.dao.SqlQueries.*;
 
 @Component
 public class DriverDaoJDBCImpl implements DriverDao {
     private final Logger logger = LogManager.getLogger(DriverDaoJDBCImpl.class);
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final String SQL_ALL_DRIVER = "select d.firstName, d.lastName, d.driverLicence, d.workDate from driver d order by d.driverLicence";
-    private final String SQL_CREATE_DRIVER = "insert into driver(driverLicence) values (:driverLicence)";
 
-    public DriverDaoJDBCImpl(DataSource dataSource) {
-        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    public DriverDaoJDBCImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     @Override
