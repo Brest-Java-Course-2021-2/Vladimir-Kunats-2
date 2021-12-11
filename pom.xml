@@ -17,6 +17,7 @@
         <module>service</module>
         <module>web-app</module>
         <module>test-db</module>
+        <module>service-rest</module>
 
     </modules>
 
@@ -34,6 +35,7 @@
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
         <hamcrest.version>1.3</hamcrest.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <mockito.version>4.1.0</mockito.version>
     </properties>
 
     <dependencyManagement>
@@ -168,6 +170,20 @@
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-all</artifactId>
                 <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

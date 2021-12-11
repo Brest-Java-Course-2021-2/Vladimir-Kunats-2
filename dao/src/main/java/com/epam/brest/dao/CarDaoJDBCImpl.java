@@ -1,4 +1,4 @@
 package com.epam.brest.dao;
 
-public class CarDAOJDBCImpl {
+public class CarDaoJDBCImpl {
 }

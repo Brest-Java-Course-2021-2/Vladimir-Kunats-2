@@ -10,6 +10,7 @@
         <module name="dao" />
         <module name="service" />
         <module name="dao-api" />
+        <module name="service-rest" />
         <module name="model" />
         <module name="test-db" />
         <module name="service-api" />
@@ -21,6 +22,7 @@
       <module name="model" target="11" />
       <module name="service" target="11" />
       <module name="service-api" target="11" />
+      <module name="service-rest" target="11" />
       <module name="test-db" target="11" />
       <module name="Vladimir-Kunats-2" target="11" />
       <module name="web-app" target="11" />

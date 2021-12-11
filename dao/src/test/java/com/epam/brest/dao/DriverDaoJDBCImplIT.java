@@ -28,7 +28,7 @@ class DriverDaoJDBCImplIT {
 
     DriverDaoJDBCImpl driverDaoJDBC;
 
-    public DriverDaoJDBCImplIT(@Autowired DriverDaoJDBCImpl driverDaoJDBCImpl) {
+    public DriverDaoJDBCImplIT(@Autowired DriverDaoJDBCImpl driverDaoJDBC) {
         this.driverDaoJDBC = (DriverDaoJDBCImpl) driverDaoJDBC;
     }
 

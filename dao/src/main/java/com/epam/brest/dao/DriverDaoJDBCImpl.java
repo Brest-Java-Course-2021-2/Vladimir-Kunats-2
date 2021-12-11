@@ -4,6 +4,7 @@ import com.epam.brest.model.Driver;
 import com.epam.brest.model.dao.DriverDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -22,11 +23,13 @@ import static com.epam.brest.dao.SqlQueries.*;
 public class DriverDaoJDBCImpl implements DriverDao {
     private final Logger logger = LogManager.getLogger(DriverDaoJDBCImpl.class);
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public DriverDaoJDBCImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public DriverDaoJDBCImpl(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
+
+
 
     @Override
     public List<Driver> findAllDrivers() {
