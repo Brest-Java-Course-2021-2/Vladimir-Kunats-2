@@ -23,13 +23,11 @@ import static com.epam.brest.dao.SqlQueries.*;
 public class DriverDaoJDBCImpl implements DriverDao {
     private final Logger logger = LogManager.getLogger(DriverDaoJDBCImpl.class);
 
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public DriverDaoJDBCImpl(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public DriverDaoJDBCImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
-
-
 
     @Override
     public List<Driver> findAllDrivers() {
@@ -68,7 +66,7 @@ public class DriverDaoJDBCImpl implements DriverDao {
 
     @Override
     public Integer countDriver() {
-        logger.debug("Start:countDriver({})");
+        logger.debug("Start:countDriver({}");
         return null;
     }
 

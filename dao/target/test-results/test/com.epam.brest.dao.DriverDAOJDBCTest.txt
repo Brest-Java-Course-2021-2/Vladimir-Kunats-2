@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.epam.brest.dao.DriverDAOJDBCTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.628 s <<< FAILURE! - in com.epam.brest.dao.DriverDAOJDBCTest
+com.epam.brest.dao.DriverDAOJDBCTest.getDriverById  Time elapsed: 0.083 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not <null>
+	at com.epam.brest.dao.DriverDAOJDBCTest.getDriverById(DriverDAOJDBCTest.java:56)
+

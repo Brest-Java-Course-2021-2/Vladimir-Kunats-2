@@ -1,5 +1,6 @@
 package com.epam.brest.model;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -9,20 +10,22 @@ public class Driver {
     private String lastName;
     private String driverLicence;
     private Instant workDate;
+    private BigDecimal salary;
 
     public Driver() {
     }
 
-    public Driver(String driverLicence) {
-        this.driverLicence = driverLicence;
-    }
-
-    public Driver(String firstName, String lastName, String driverLicence, Instant workDate) {
+    public Driver(Integer driverId, String firstName, String lastName, String driverLicence, Instant workDate, BigDecimal salary) {
         this.driverId = driverId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.driverLicence = driverLicence;
         this.workDate = workDate;
+        this.salary = salary;
+    }
+
+    public Driver(String driverLicence) {
+        this.driverLicence = driverLicence;
     }
 
     public Integer getDriverId() {
@@ -65,17 +68,25 @@ public class Driver {
         this.workDate = workDate;
     }
 
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && driverLicence.equals(driver.driverLicence) && workDate.equals(driver.workDate);
+        return driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && driverLicence.equals(driver.driverLicence) && workDate.equals(driver.workDate) && salary.equals(driver.salary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(driverId, firstName, lastName, driverLicence, workDate);
+        return Objects.hash(driverId, firstName, lastName, driverLicence, workDate, salary);
     }
 
     @Override
@@ -86,6 +97,7 @@ public class Driver {
                 ", lastName='" + lastName + '\'' +
                 ", driverLicence='" + driverLicence + '\'' +
                 ", workDate=" + workDate +
+                ", salary=" + salary +
                 '}';
     }
 }
