@@ -5,28 +5,25 @@ import java.time.Instant;
 import java.util.Objects;
 
 public class Driver {
+
     private Integer driverId;
-    private String firstName;
-    private String lastName;
-    private String driverLicence;
-    private Instant workDate;
-    private BigDecimal salary;
+    private String driverFirstName;
+    private String driverLastName;
+    private Instant driverWorkDate;
+    private String driverLicense;
+    private BigDecimal driverSalary;
 
     public Driver() {
     }
 
-    public Driver(Integer driverId, String firstName, String lastName, String driverLicence, Instant workDate, BigDecimal salary) {
+    public Driver(Integer driverId, String driverFirstName, String driverLastName, Instant driverWorkDate, String driverLicense, BigDecimal driverSalary) {
         this.driverId = driverId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.driverLicence = driverLicence;
-        this.workDate = workDate;
-        this.salary = salary;
-    }
-
-    public Driver(String driverLicence) {
-        this.driverLicence = driverLicence;
-    }
+        this.driverFirstName = driverFirstName;
+        this.driverLastName = driverLastName;
+        this.driverWorkDate = driverWorkDate;
+        this.driverLicense = driverLicense;
+        this.driverSalary = driverSalary;
+            }
 
     public Integer getDriverId() {
         return driverId;
@@ -36,68 +33,69 @@ public class Driver {
         this.driverId = driverId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getDriverFirstName() {
+        return driverFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setDriverFirstName(String driverFirstName) {
+        this.driverFirstName = driverFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getDriverLastName() {
+        return driverLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setDriverLastName(String driverLastName) {
+        this.driverLastName = driverLastName;
     }
 
-    public String getDriverLicence() {
-        return driverLicence;
+    public Instant getDriverWorkDate() {
+        return driverWorkDate;
     }
 
-    public void setDriverLicence(String driverLicence) {
-        this.driverLicence = driverLicence;
+    public void setDriverWorkDate(Instant driverWorkDate) {
+        this.driverWorkDate = driverWorkDate;
     }
 
-    public Instant getWorkDate() {
-        return workDate;
+    public String getDriverLicense() {
+        return driverLicense;
     }
 
-    public void setWorkDate(Instant workDate) {
-        this.workDate = workDate;
+    public void setDriverLicense(String driverLicense) {
+        this.driverLicense = driverLicense;
     }
 
-    public BigDecimal getSalary() {
-        return salary;
+    public BigDecimal getDriverSalary() {
+        return driverSalary;
     }
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
+    public void setDriverSalary(BigDecimal driverSalary) {
+        this.driverSalary = driverSalary;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Driver)) return false;
         Driver driver = (Driver) o;
-        return driverId.equals(driver.driverId) && firstName.equals(driver.firstName) && lastName.equals(driver.lastName) && driverLicence.equals(driver.driverLicence) && workDate.equals(driver.workDate) && salary.equals(driver.salary);
+        return driverId.equals(driver.driverId) && driverFirstName.equals(driver.driverFirstName) && driverLastName.equals(driver.driverLastName) && driverWorkDate.equals(driver.driverWorkDate) && driverLicense.equals(driver.driverLicense) && driverSalary.equals(driver.driverSalary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(driverId, firstName, lastName, driverLicence, workDate, salary);
+        return Objects.hash(driverId, driverFirstName, driverLastName, driverWorkDate, driverLicense, driverSalary);
     }
 
     @Override
     public String toString() {
         return "Driver{" +
                 "driverId=" + driverId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", driverLicence='" + driverLicence + '\'' +
-                ", workDate=" + workDate +
-                ", salary=" + salary +
+                ", driverFirstName='" + driverFirstName + '\'' +
+                ", driverLastName='" + driverLastName + '\'' +
+                ", driverWorkDate=" + driverWorkDate +
+                ", driverLicense='" + driverLicense + '\'' +
+                ", driverSalary=" + driverSalary +
                 '}';
     }
 }
+

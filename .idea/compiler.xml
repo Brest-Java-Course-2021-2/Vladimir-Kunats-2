@@ -11,6 +11,7 @@
         <module name="service" />
         <module name="dao-api" />
         <module name="service-rest" />
+        <module name="rest-app" />
         <module name="model" />
         <module name="test-db" />
         <module name="service-api" />
@@ -20,6 +21,7 @@
       <module name="dao" target="11" />
       <module name="dao-api" target="11" />
       <module name="model" target="11" />
+      <module name="rest-app" target="11" />
       <module name="service" target="11" />
       <module name="service-api" target="11" />
       <module name="service-rest" target="11" />

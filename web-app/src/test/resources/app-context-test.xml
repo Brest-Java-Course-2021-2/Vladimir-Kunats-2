@@ -2,14 +2,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-http://www.springframework.org/schema/p ">
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Use spring servlet for all requests, including static resources -->
     <mvc:default-servlet-handler/>
@@ -26,27 +24,27 @@ http://www.springframework.org/schema/p ">
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="driverDtoDao" class="com.epam.brest.dao.DriverDtoDaoJdbc">
+    <bean id="driverDtoDao" class="com.epam.brest.dao.DriverDaoJDBCImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="driverDtoService" class="com.epam.brest.service.impl.DriverDtoServiceImpl">
+    <bean id="driverDtoService" class="com.epam.brest.DriverDtoServiceImpl">
         <constructor-arg name="driverDtoDao" ref="driverDtoDao"/>
     </bean>
 
-    <bean id="departmentDao" class="com.epam.brest.dao.DriverDaoJDBCImpl">
+    <bean id="driverDao" class="com.epam.brest.dao.DriverDAOJDBCImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="driverService" class="com.epam.brest.service.impl.DriverServiceImpl">
-        <constructor-arg name="driverDao" ref="driverDao"/>
+    <bean id="driverService" class="com.epam.brest.DriverServiceImpl">
+        <constructor-arg name="clientDao" ref="clientDao"/>
     </bean>
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath*:test-db.properties</value>
-                <value>classpath*:sql-department.properties</value>
+                <value>classpath*:sql-client.properties</value>
             </list>
         </property>
     </bean>
@@ -54,12 +52,12 @@ http://www.springframework.org/schema/p ">
     <!-- Thymeleaf Template Resolver -->
     <bean id="templateResolver"
           class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/WEB-INF/templates/"/>
-        <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML"/>
+        <property name="prefix" value="/WEB-INF/templates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML" />
         <!-- Template cache is true by default. Set to false if you want             -->
         <!-- templates to be automatically updated when modified.                    -->
-        <property name="cacheable" value="false"/>
+        <property name="cacheable" value="false" />
     </bean>
 
     <!-- Thymeleaf Template Engine (Spring5-specific version) -->
@@ -67,19 +65,21 @@ http://www.springframework.org/schema/p ">
           class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolvers">
             <set>
-                <ref bean="templateResolver"/>
+                <ref bean="templateResolver" />
             </set>
         </property>
     </bean>
 
     <!-- Thymeleaf View Resolver - implementation of Spring's ViewResolver interface -->
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine"/>
-        <property name="characterEncoding" value="UTF-8"/>
+        <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
 
-    <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-          p:basename="/WEB-INF/messages">
-    </bean>
+
+<!--    <bean class="com.epam.brest.web_app.MvcMappingExceptionResolver">-->
+<!--        <property name="defaultErrorView" value="error"/>-->
+<!--        <property name="exceptionAttribute" value="exception"/>-->
+<!--        <property name="warnLogCategory" value="warn"/>-->
+<!--    </bean>-->
 </beans>

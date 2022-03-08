@@ -1,21 +1,24 @@
 package com.epam.brest.model;
 
-import java.time.Instant;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Car {
+
     private Integer carId;
-    private String nameCar;
-    private String typeCar;
+
+    private String carModel;
+
+    private BigDecimal carMileAge;
+
     private Integer driverId;
 
-    public Car(Integer carId, String nameCar, String typeCar, Integer driverId) {
+    public Car(Integer carId, String carModel, BigDecimal carMileAge, Integer driverId) {
         this.carId = carId;
-        this.nameCar = nameCar;
-        this.typeCar = typeCar;
+        this.carModel = carModel;
+        this.carMileAge = carMileAge;
         this.driverId = driverId;
     }
-
     public Car() {
     }
 
@@ -27,20 +30,20 @@ public class Car {
         this.carId = carId;
     }
 
-    public String getNameCar() {
-        return nameCar;
+    public String getCarModel() {
+        return carModel;
     }
 
-    public void setNameCar(String nameCar) {
-        this.nameCar = nameCar;
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
     }
 
-    public String getTypeCar() {
-        return typeCar;
+    public BigDecimal getCarMileAge() {
+        return carMileAge;
     }
 
-    public void setTypeCar(String typeCar) {
-        this.typeCar = typeCar;
+    public void setCarMileAge(BigDecimal carMileAge) {
+        this.carMileAge = carMileAge;
     }
 
     public Integer getDriverId() {
@@ -54,22 +57,22 @@ public class Car {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Car)) return false;
         Car car = (Car) o;
-        return carId.equals(car.carId) && nameCar.equals(car.nameCar) && typeCar.equals(car.typeCar)  && driverId.equals(car.driverId);
+        return carId.equals(car.carId) && carModel.equals(car.carModel) && carMileAge.equals(car.carMileAge) && driverId.equals(car.driverId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carId, nameCar, typeCar, driverId);
+        return Objects.hash(carId, carModel, carMileAge, driverId);
     }
 
     @Override
     public String toString() {
         return "Car{" +
                 "carId=" + carId +
-                ", nameCar='" + nameCar + '\'' +
-                ", typeCar='" + typeCar + '\'' +
+                ", carModel='" + carModel + '\'' +
+                ", carMileAge=" + carMileAge +
                 ", driverId=" + driverId +
                 '}';
     }

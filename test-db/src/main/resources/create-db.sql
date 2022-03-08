@@ -1,20 +1,22 @@
 DROP TABLE IF EXISTS driver;
-CREATE TABLE driver(
-    driverId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(20) NOT NULL,
-    lastName VARCHAR(20) NOT NULL,
-    driverLicence VARCHAR(9) NOT NULL UNIQUE,
-    workDate TIMESTAMP NOT NULL,
-    salary DECIMAL NOT NULL,
+
+DROP TABLE IF EXISTS car;
+
+CREATE TABLE driver (
+    driverId int NOT NULL auto_increment,
+    driverfirstname varchar(50) NOT NULL,
+    driverlastname varchar(50) NOT NULL,
+    driverworkdate date NOT NULL,
+    driverlicense varchar(9) NOT NULL UNIQUE,
+    driversalary decimal NOT NULL,
     CONSTRAINT driver_pk PRIMARY KEY (driverId)
 );
-DROP TABLE IF EXISTS car;
+
 CREATE TABLE car (
-    carId INT NOT NULL AUTO_INCREMENT,
-    nameCar VARCHAR(20) INT NOT NULL,
-    typeCar VARCHAR(20) NOT NULL,
-    driverId INT NOT NULL,
-    CONSTRAINT car_pk PRIMARY KEY (carId),
-    CONSTRAINT car_driver_fk FOREIGN KEY (driverId) REFERENCES driver (driverId)
-  );
-)
+    carId int NOT NULL auto_increment,
+    carmodel varchar(255) NOT NULL,
+    carmileage decimal NOT NULL,
+    driverId int NOT NULL,
+        CONSTRAINT car_pk PRIMARY KEY (carId),
+        CONSTRAINT car_driver_fk FOREIGN KEY (driverId) REFERENCES driver(driverId)
+);
