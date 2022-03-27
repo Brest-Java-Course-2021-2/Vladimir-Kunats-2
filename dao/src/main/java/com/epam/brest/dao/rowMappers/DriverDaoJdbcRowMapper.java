@@ -18,7 +18,7 @@ public class DriverDaoJdbcRowMapper implements RowMapper<Driver> {
      */
     @Override
     public Driver mapRow(ResultSet resultSet, int i) throws SQLException {
-        Driver driver = new Driver();
+        Driver driver = new Driver("Test", "12/08/2021", "Test", 1000);
         driver.setDriverId(resultSet.getInt("driver_id") );
         driver.setDriverFirstName(resultSet.getString("driver_firstname"));
         driver.setDriverLastName(resultSet.getString("driver_lastname"));

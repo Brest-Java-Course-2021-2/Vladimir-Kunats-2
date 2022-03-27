@@ -77,7 +77,7 @@ public class CarDaoJdbcImplIT {
             cars = carDaoJdbcImpl.findAllCars();
         }
         Car carSrc = cars.get(0);
-        carSrc.setCarModel(carSrc.getCarModel() + "_TEST");
+        carSrc.setCarModel(carSrc.getCarModel() + "CARTEST");
         carDaoJdbcImpl.updateCarById(carSrc.getCarId(), carSrc);
 
         Car carDst = carDaoJdbcImpl.findCarById(carSrc.getCarId());

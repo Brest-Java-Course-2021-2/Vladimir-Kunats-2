@@ -44,7 +44,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public List<Driver> findAllDrivers() {
-        logger.info("Method findAllDrivers started");
+        logger.info("Method findAllDrivers started in class DriverDaoJdbcImpl");
         return namedParameterJdbcTemplate.query(
                 SQL_DRIVER_FIND_ALL, new DriverDaoJdbcRowMapper());
     }
@@ -52,16 +52,15 @@ public class DriverDaoJdbcImpl implements DriverDao {
     /**
      * Find driver by Id.
      *
-     * @param id driver Id.
+     * @param driverId Integer.
      * @return driver.
      */
 
     @Override
-    public Driver findDriverById(final Integer id) {
-        logger.info("Method findDriverById started");
-
+    public Driver findDriverById(final Integer driverId) {
+        logger.info("Method findDriverById started in class DriverDaoJdbcImpl");
         SqlParameterSource sqlParameterSource =
-                new MapSqlParameterSource("driverId", id);
+                new MapSqlParameterSource("driverId", driverId);
         return namedParameterJdbcTemplate.queryForObject(
                 SQL_DRIVER_FIND_BY_ID, sqlParameterSource, new DriverDaoJdbcRowMapper());
     }
@@ -75,10 +74,9 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public Integer createDriver(final Driver driver) {
-        logger.info("Method createDriver started");
-
+        logger.info("Method createDriver started in class DriverDaoJdbcImpl");
         if (!DriverIsUnique(driver.getDriverLicense())) {
-            logger.warn("Driver with this license already exists!!!");}
+            logger.info("Driver with this driverLicense already exists!!!");}
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
                         .addValue("driverFirstName", driver.getDriverFirstName())
@@ -101,8 +99,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public Integer updateDriverById(Integer id, Driver driver) {
-        logger.info("Method updateDriverById started");
-
+        logger.info("Method updateDriverById started in class DriverDaoJdbcImpl");
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("driverId", id)
                 .addValue("driverFirstName", driver.getDriverFirstName())
@@ -117,16 +114,15 @@ public class DriverDaoJdbcImpl implements DriverDao {
     /**
      * Delete driver.
      *
-     * @param id driver id.
+     * @param driverId Integer.
      * @return number of updated records in the database.
      */
 
     @Override
-    public Integer deleteDriverById(Integer id) {
-        logger.info("Method deleteDriverById started");
-
+    public Integer deleteDriverById(Integer driverId) {
+        logger.info("Method deleteDriverById started in class DriverDaoJdbcImpl");
         SqlParameterSource sqlParameterSource =
-                new MapSqlParameterSource("driverId", id);
+                new MapSqlParameterSource("driverId", driverId);
         return namedParameterJdbcTemplate.update(SQL_DRIVER_DELETE_BY_ID,
                 sqlParameterSource);
     }
@@ -138,7 +134,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public Integer countDrivers() {
-        logger.info("Method countDrivers started");
+        logger.info("Method countDrivers started in class DriverDaoJdbcImpl");
         return namedParameterJdbcTemplate.queryForObject(
                 SQL_DRIVER_COUNT, new MapSqlParameterSource(), Integer.class);
     }
@@ -150,8 +146,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
      */
 
     private boolean DriverIsUnique(String driverLicense) {
-        logger.info("Method DriverIsUnique started");
-
+        logger.info("Method DriverIsUnique started in class DriverDaoJdbcImpl");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource("driverLicense", driverLicense);
         return namedParameterJdbcTemplate.queryForObject(

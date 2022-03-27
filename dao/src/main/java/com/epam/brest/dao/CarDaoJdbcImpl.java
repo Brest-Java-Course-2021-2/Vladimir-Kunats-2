@@ -36,7 +36,7 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public List<Car> findAllCars() {
-        logger.info("Method findAllCars started");
+        logger.info("Method findAllCars started in class CarDaoJdbcImpl");
         return namedParameterJdbcTemplate.query(SQL_CAR_FIND_ALL,
                 new CarDaoJdbcRowMapper());
     }
@@ -44,15 +44,15 @@ public class CarDaoJdbcImpl implements CarDao {
     /**
      * Find car by Id.
      *
-     * @param id car Id.
+     * @param carId Integer.
      * @return car.
      */
 
     @Override
-    public Car findCarById(Integer id) {
-        logger.info("Method findCarById started");
+    public Car findCarById(Integer carId) {
+        logger.info("Method findCarById started in class CarDaoJdbcImpl");
         SqlParameterSource sqlParameterSource =
-                new MapSqlParameterSource("carId", id);
+                new MapSqlParameterSource("carId", carId);
         return namedParameterJdbcTemplate.queryForObject(
                 SQL_CAR_FIND_BY_ID, sqlParameterSource,
                 new CarDaoJdbcRowMapper());
@@ -61,17 +61,16 @@ public class CarDaoJdbcImpl implements CarDao {
     /**
      * Update car.
      *
-     * @param id car id.
+     * @param carId Integer.
      * @param car car.
      * @return number of updated records in the database.
      */
 
     @Override
-    public Integer updateCarById(Integer id, Car car) {
-        logger.info("Method updateCarById started");
-
+    public Integer updateCarById(Integer carId, Car car) {
+        logger.info("Method updateCarById started in class CarDaoJdbcImpl");
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
-                .addValue("carId", id)
+                .addValue("carId", carId)
                 .addValue("carModel", car.getCarModel())
                 .addValue("carMileage", car.getCarMileAge())
                 .addValue("driverId", car.getDriverId());
@@ -87,7 +86,7 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public Integer createCar(Car car) {
-        logger.info("Method saveCar started");
+        logger.info("Method saveCar started in class CarDaoJdbcImpl ");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
                         .addValue("carModel", car.getCarModel())
@@ -101,16 +100,15 @@ public class CarDaoJdbcImpl implements CarDao {
     /**
      * Delete car.
      *
-     * @param id car id.
+     * @param carId Integer.
      * @return number of updated records in the database.
      */
 
     @Override
-    public Integer deleteCarById(Integer id) {
-        logger.info("Method deleteCarById started");
-
+    public Integer deleteCarById(Integer carId) {
+        logger.info("Method deleteCarById started in class CarDaoJdbcImpl");
         SqlParameterSource sqlParameterSource =
-                new MapSqlParameterSource("carId", id);
+                new MapSqlParameterSource("carId", carId);
         return namedParameterJdbcTemplate.update(
                 SQL_CAR_DELETE_BY_ID, sqlParameterSource);
     }
@@ -123,7 +121,7 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public Integer countCars() {
-        logger.info("Method countCars started");
+        logger.info("Method countCars started in class CarDaoJdbcImpl");
         return namedParameterJdbcTemplate.queryForObject(
                 SQL_CAR_ALL_COUNT, new MapSqlParameterSource(), Integer.class);
     }

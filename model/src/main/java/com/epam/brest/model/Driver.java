@@ -13,7 +13,7 @@ public class Driver {
     private String driverLicense;
     private BigDecimal driverSalary;
 
-    public Driver() {
+    public Driver(String test, String s, String test1, int i) {
     }
 
     public Driver(Integer driverId, String driverFirstName, String driverLastName, Instant driverWorkDate, String driverLicense, BigDecimal driverSalary) {
